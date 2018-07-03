@@ -5,6 +5,7 @@ var { mongoose } = require('./db/config');
 var { user } = require('./models/user');
 
 var app = express();
+const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
@@ -34,7 +35,7 @@ app.get('/user/:id', (req, res) =>{
   //  res.send(req.params);
 
   var id = req.params.id;
-  
+
   user.findById(id).then((detailsbyId) =>{
     res.send({detailsbyId});
   },(err) => {
@@ -44,7 +45,7 @@ app.get('/user/:id', (req, res) =>{
 
 });
 
-app.listen(3000, () => {
+app.listen(port, () => {
     console.log('Started on port 3000');
 });
 
